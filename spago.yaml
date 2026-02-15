@@ -1,0 +1,42 @@
+workspace:
+  packageSet:
+    registry: 73.0.0
+  extraPackages:
+    yoga-capnweb:
+      path: ../purescript-yoga-capnweb
+    yoga-om:
+      path: ../purescript-yoga-om
+    yoga-om-strom:
+      path: ../purescript-yoga-om-strom
+    yoga-react:
+      path: ../purescript-yoga-react
+    yoga-react-om:
+      path: ../purescript-yoga-react-om
+
+package:
+  name: yoga-capnweb-om
+  dependencies:
+    - aff
+    - avar
+    - effect
+    - exceptions
+    - prelude
+    - tailrec
+    - tuples
+    - maybe
+    - unsafe-coerce
+    - yoga-capnweb
+    - yoga-om
+    - yoga-om-strom
+  publish:
+    version: 0.1.0
+    license: MIT
+    location:
+      githubOwner: rowtype-yoga
+      githubRepo: purescript-yoga-capnweb-om
+  test:
+    main: Test.Main
+    dependencies:
+      - arrays
+      - spec
+      - spec-discovery
