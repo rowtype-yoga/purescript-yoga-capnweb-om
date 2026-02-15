@@ -36,13 +36,13 @@ spec = describe "Yoga.Capnweb.Om" do
     it "rpc1 returns a single value" do
       target <- liftEffect mkTestTarget
       conn <- liftEffect $ connectPair target
-      result <- runOm $ Strom.runCollect $ Capnweb.rpc1 conn "ping" "hello"
+      result <- runOm $ Strom.runCollect $ Capnweb.rpc1 "ping" "hello" conn
       result `shouldEqual` ["pong: hello"]
 
     it "rpc2 passes two arguments" do
       target <- liftEffect mkTestTarget
       conn <- liftEffect $ connectPair target
-      result <- runOm $ Strom.runCollect $ Capnweb.rpc2 conn "add" 3 4
+      result <- runOm $ Strom.runCollect $ Capnweb.rpc2 "add" 3 4 conn
       result `shouldEqual` [7]
 
   describe "subscribe" do
@@ -50,7 +50,7 @@ spec = describe "Yoga.Capnweb.Om" do
       target <- liftEffect mkTestTarget
       conn <- liftEffect $ connectPair target
       items :: Array PushItem <- runOm $ Strom.runCollect $
-        Capnweb.subscribe conn "pushItems"
+        Capnweb.subscribe "pushItems" conn
           # Strom.takeStrom 5
       Array.length items `shouldEqual` 5
 
@@ -58,6 +58,6 @@ spec = describe "Yoga.Capnweb.Om" do
       target <- liftEffect mkTestTarget
       conn <- liftEffect $ connectPair target
       items :: Array PushItem <- runOm $ Strom.runCollect $
-        Capnweb.subscribe conn "pushItems"
+        Capnweb.subscribe "pushItems" conn
           # Strom.takeStrom 2
       Array.length items `shouldEqual` 2

@@ -1,1 +1,0 @@
-{"comments":null,"declarations":[{"children":[],"comments":null,"info":{"declType":"value","type":{"annotation":[],"contents":[["Test","Spec","Runner"],"Reporter"],"tag":"TypeConstructor"}},"kind":null,"sourceSpan":{"end":[22,24],"name":".spago/p/spec-8.1.1/src/Test/Spec/Reporter/Tap.purs","start":[22,1]},"title":"tapReporter"}],"name":"Test.Spec.Reporter.Tap","reExports":[]}
