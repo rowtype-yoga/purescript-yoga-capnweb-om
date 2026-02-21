@@ -11,16 +11,14 @@ import Prelude
 import Data.Maybe (Maybe(..))
 import Data.Tuple.Nested ((/\))
 import Effect (Effect)
-import Effect.Aff (forkAff, killFiber)
 import Effect.Aff as Aff
 import Effect.Aff.AVar (AVar)
 import Effect.Aff.AVar as AVar
 import Effect.Aff.Class (liftAff)
 import Effect.Class (liftEffect)
-import Effect.Exception (error)
 import Control.Monad.Rec.Class (Step(..))
 import Unsafe.Coerce (unsafeCoerce)
-import Yoga.Capnweb (RpcConnection, call0, call1, call2, callWithCallback)
+import Yoga.Capnweb (RpcConnection, awaitCallback, call0, call1, call2, callWithCancellableCallback, cancelCallback)
 import Yoga.Om (Om)
 import Yoga.Om.Strom (Strom, mkStrom, bracket)
 import Yoga.Om.Strom as Strom
@@ -31,11 +29,12 @@ subscribe method conn = bracket acquire release use
   acquire = liftAff do
     queue <- AVar.empty
     let cb v = Aff.launchAff_ $ AVar.put (unsafeCoerce v :: a) queue
-    fiber <- forkAff $ callWithCallback conn method cb
-    pure { queue, fiber }
+    handle <- callWithCancellableCallback conn method cb # liftEffect
+    pure { queue, handle }
 
   release res = liftAff do
-    killFiber (error "unsubscribed") res.fiber
+    cancelCallback res.handle # liftEffect
+    awaitCallback res.handle
 
   use res = pullLoop res.queue
 
