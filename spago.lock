@@ -15,9 +15,6 @@
               "effect": ">=4.0.0 <5.0.0"
             },
             {
-              "exceptions": ">=6.1.0 <7.0.0"
-            },
-            {
               "maybe": ">=6.0.0 <7.0.0"
             },
             {
@@ -33,10 +30,10 @@
               "unsafe-coerce": ">=6.0.0 <7.0.0"
             },
             {
-              "yoga-capnweb": ">=0.2.0 <0.3.0"
+              "yoga-capnweb": ">=0.3.0 <0.4.0"
             },
             {
-              "yoga-om": ">=1.4.0 <2.0.0"
+              "yoga-om": ">=1.5.2 <2.0.0"
             },
             {
               "yoga-om-strom": ">=0.3.0 <0.4.0"
@@ -1383,8 +1380,8 @@
     },
     "yoga-capnweb": {
       "type": "registry",
-      "version": "0.2.0",
-      "integrity": "sha256-oSc0w7RmtcyjLXcN2u+Umyw93izmvFYPVWQeIzic2WE=",
+      "version": "0.3.0",
+      "integrity": "sha256-xasp16iXH3nR7kptC3CLq2GyzOBGtuiY2UjDBBGXCzw=",
       "dependencies": [
         "aff",
         "aff-promise",
@@ -1400,8 +1397,8 @@
     },
     "yoga-om": {
       "type": "registry",
-      "version": "1.4.0",
-      "integrity": "sha256-gTpW2XABBZbD3FtDR4gX1ktB1EtQUibIvGUuOhUuXRU=",
+      "version": "1.5.2",
+      "integrity": "sha256-2ys14BF6NPgzFDFUIFk0EDxmqkA8+yghIA9TXHlOmE0=",
       "dependencies": [
         "aff",
         "aff-retry",
@@ -1413,6 +1410,7 @@
         "either",
         "exceptions",
         "functions",
+        "heterogeneous",
         "maybe",
         "newtype",
         "parallel",
